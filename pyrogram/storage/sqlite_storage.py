@@ -150,6 +150,7 @@ class SQLiteStorage(Storage):
     async def close(self):
         await self.loop.run_in_executor(self.executor, self.conn.close)
         self.executor.shutdown()
+        self._executor = None
 
     async def delete(self):
         raise NotImplementedError
